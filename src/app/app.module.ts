@@ -8,13 +8,15 @@ import { RouterModule} from '@angular/router';
 import { HomeComponent } from './components/home/home.component'
 import { router } from './app.route';
 import { PreferredShopsComponent } from './components/preferred-shops/preferred-shops.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    PreferredShopsComponent
+    PreferredShopsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

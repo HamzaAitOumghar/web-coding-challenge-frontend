@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="col-md-6 mx-auto shadow p-5 m-5 bg-white rounded" >
+  <form class="col-md-6 mx-auto shadow p-5 m-5 bg-white rounded" [formGroup]="signUpForm" >
     <div class="form-group">
       <label for="exampleInputEmail1"> Enter your email address : </label>
     
@@ -7,7 +7,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="validationTooltipUsernamePrepend"><i class="fas fa-at"></i></span>
         </div>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
        
       </div>
     
@@ -21,7 +21,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text" ><i class="fas fa-key"></i></span>
         </div>
-        <input type="password" class="form-control" name="password" placeholder="Password">
+        <input type="password" class="form-control" name="password" placeholder="Password" formControlName="password">
        
       </div>
     
@@ -35,13 +35,14 @@
         <div class="input-group-prepend">
           <span class="input-group-text" ><i class="fas fa-key"></i></span>
         </div>
-        <input type="password" class="form-control" name="repatePassword" placeholder="Password">
-       
+        <input type="password" class="form-control" name="repatePassword" placeholder="Password" formControlName="confirmPassword">
+
       </div>
-    
-    
+      <div class="text-danger" *ngIf="this.signUpForm.hasError('notSame')" >passwords are not the same</div>
+
+
     </div>
-   
-    <button type="submit" class="btn btn-outline-primary btn-block">Sign up</button>
+
+    <button type="submit" class="btn btn-outline-primary btn-block" [disabled]="!this.signUpForm.valid" (click)="signUp()">Sign up</button>
   </form>
 </div>

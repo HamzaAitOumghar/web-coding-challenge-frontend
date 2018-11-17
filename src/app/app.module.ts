@@ -10,6 +10,7 @@ import { router } from './app.route';
 import { PreferredShopsComponent } from './components/preferred-shops/preferred-shops.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(router)
+    RouterModule.forRoot(router),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

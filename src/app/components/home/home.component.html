@@ -1,3 +1,25 @@
-<p>
-  home works!
-</p>
+<div class="container mt-2">
+  <div class="row">
+
+    <div class="col-md-3 mt-2" *ngFor="let s of shops">
+      <div class="card">
+
+        <div class="card-header">
+          {{s.id}}
+        </div>
+        <div class="card-body">{{s.name}}</div>
+        <div class="card-footer">
+          <div class="text-center">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
+              <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"></i></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>

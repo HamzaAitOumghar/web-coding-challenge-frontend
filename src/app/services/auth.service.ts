@@ -18,7 +18,7 @@ export class AuthService {
   );
 
 
-  login(data) {
+  public login(data) {
     return this.http.post(this.url + "login", data, { observe: 'response' });
   }
 
@@ -33,5 +33,9 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+  }
+
+  public signUp(data){
+    return this.http.post(this.url+"signup",data);
   }
 }

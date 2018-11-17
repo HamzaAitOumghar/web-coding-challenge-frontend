@@ -17,15 +17,19 @@ export class ShopService {
   constructor(private http: HttpClient, private router: Router) { }
 
 
-  getAllShops() {
+  public getAllShops() {
     return this.http.get(this.url + "shop/all",{ headers: this.header });
   }
 
-  addNewPreferredShop(email, shop) {
+  public getPreferredShops(email) {
+    return this.http.get(this.url + "shop/preferredShops/"+email,{ headers: this.header });
+  }
+
+  public addNewPreferredShop(email, shop) {
     return this.http.post(this.url + "shop/addLikedShop/" + email, shop,{ headers: this.header });
   }
 
-  removePreferredShop(email, shop) {
+  public removePreferredShop(email, shop) {
     return this.http.post(this.url + "shop/removeLikedShop/" + email, shop,{ headers: this.header });
   }
 

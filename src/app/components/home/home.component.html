@@ -1,17 +1,27 @@
 <div class="container mt-2">
+  
+  <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" *ngIf="isShopAdded">
+     the shop was successfully added to your preferred shops
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
   <div class="row">
 
     <div class="col-md-3 mt-2" *ngFor="let s of shops">
       <div class="card">
 
         <div class="card-header">
-          {{s.id}}
+          <strong>{{s.id}}</strong>-{{s.name}}
         </div>
-        <div class="card-body">{{s.name}}</div>
+        <div class="card-body text-center">
+          <i class="fas fa-shopping-bag fa-7x"></i>
+        </div>
         <div class="card-footer">
           <div class="text-center">
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
+              <button type="button" class="btn btn-primary" (click)="addNewPreferredShops(s)"><i class="fas fa-thumbs-up"></i></button>
               <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"></i></button>
             </div>
           </div>

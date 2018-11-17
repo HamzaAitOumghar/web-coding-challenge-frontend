@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { log } from 'util';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,13 +10,15 @@ import { log } from 'util';
 })
 export class SignUpComponent implements OnInit {
 
+  isCreated = false;
+
   signUpForm: FormGroup = new FormGroup({
     email: new FormControl(),
     password: new FormControl(),
     confirmPassword: new FormControl()
-  }, { validators: this.checkPasswords});
+  }, { validators: this.checkPasswords });
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -27,8 +30,17 @@ export class SignUpComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true }
   }
 
-  signUp(){
-    console.log(this.signUpForm.value);
+  signUp() {
+    this.authService.signUp(this.signUpForm.value).subscribe(
+      (resp) => {
+        this.isCreated = true;
+        this.signUpForm.reset();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
 
   }
 

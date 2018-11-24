@@ -3,6 +3,7 @@ import { Shop } from '../../entities/shop';
 import { ShopService } from '../../services/shop.service';
 import * as jwt_decode from "jwt-decode";
 import { AuthService } from '../../services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home',
@@ -15,17 +16,27 @@ export class HomeComponent implements OnInit {
   userEmail;
   isShopAdded=false;
 
-  constructor(private shopService:ShopService,private authService :AuthService ) { }
+  constructor(private shopService:ShopService,private authService :AuthService ,private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.userEmail = jwt_decode(this.authService.loadToken()).sub;
     this.shopService.getAllShops().subscribe(
       (resp:any)=>{
         this.shops=resp;
+        
+        this.shops.forEach(function(shop){
+          shop.isLiked=true;
+        });
+        
+        this.spinner.hide();
+        
+
       },
       err=>{
         console.log(err);
-        
+        this.spinner.hide();
+
       }
     );
   }
@@ -39,6 +50,14 @@ export class HomeComponent implements OnInit {
         
       }
     );
+  }
+
+  dislikeProduct(shop:Shop){
+      shop.isLiked=false;
+
+      setTimeout(function(){
+        shop.isLiked=true;
+      },3000);
   }
 
 }

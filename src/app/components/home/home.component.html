@@ -1,7 +1,7 @@
 <div class="container mt-2">
-  
+
   <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" *ngIf="isShopAdded">
-     the shop was successfully added to your preferred shops
+    the shop was successfully added to your preferred shops
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -9,7 +9,7 @@
 
   <div class="row">
 
-    <div class="col-md-3 mt-2" *ngFor="let s of shops">
+    <div class="col-md-3 mt-2" *ngFor="let s of shops" [hidden]="!s.isLiked">
       <div class="card">
 
         <div class="card-header">
@@ -22,14 +22,13 @@
           <div class="text-center">
             <div class="btn-group" role="group">
               <button type="button" class="btn btn-primary" (click)="addNewPreferredShops(s)"><i class="fas fa-thumbs-up"></i></button>
-              <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"></i></button>
+              <button type="button" class="btn btn-danger" (click)="dislikeProduct(s)"><i class="fas fa-thumbs-down"></i></button>
             </div>
           </div>
         </div>
 
       </div>
     </div>
-
-
   </div>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="timer"></ngx-spinner>

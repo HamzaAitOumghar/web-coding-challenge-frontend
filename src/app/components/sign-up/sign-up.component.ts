@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { log } from 'util';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class SignUpComponent implements OnInit {
     confirmPassword: new FormControl()
   }, { validators: this.checkPasswords });
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
@@ -31,13 +31,16 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
+    this.spinner.show();
     this.authService.signUp(this.signUpForm.value).subscribe(
       (resp) => {
         this.isCreated = true;
         this.signUpForm.reset();
+        this.spinner.hide();
       },
       err => {
         console.log(err);
+        this.spinner.hide();
       }
     );
 

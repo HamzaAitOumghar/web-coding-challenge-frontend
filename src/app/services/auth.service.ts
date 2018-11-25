@@ -26,12 +26,15 @@ export class AuthService {
     localStorage.setItem('token', jwt);
   }
 
+  idLoggedIn(){
+    return this.loadToken() !== null ;
+  }
   loadToken() {
     return localStorage.getItem('token');
   }
   
   logout() {
-    localStorage.removeItem('token');
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 

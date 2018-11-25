@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { AuthService } from './services/auth.service';
 import { ShopService } from './services/shop.service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { ShopService } from './services/shop.service';
     HttpClientModule,
     NgxSpinnerModule
   ],
-  providers: [AuthService,ShopService],
+  providers: [AuthService,ShopService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

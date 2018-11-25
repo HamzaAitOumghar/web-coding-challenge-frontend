@@ -41,13 +41,16 @@ export class HomeComponent implements OnInit {
     );
   }
   addNewPreferredShops(shop){
+    this.spinner.show();
+
     this.shopService.addNewPreferredShop(this.userEmail,shop).subscribe(
       (resp:any)=>{
+        this.spinner.hide();
         this.isShopAdded=true;
       },
       err=>{
         console.log(err);
-        
+        this.spinner.hide();
       }
     );
   }

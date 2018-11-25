@@ -20,6 +20,9 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router,private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    if(this.authService.idLoggedIn()){
+      this.router.navigate(['/home']);
+    }
   }
 
   login() {

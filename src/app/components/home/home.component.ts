@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
 
       setTimeout(function(){
         shop.isLiked=true;
-      },3000);
+      },7200000);
   }
 
 }
